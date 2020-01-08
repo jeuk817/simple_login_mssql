@@ -7,3 +7,11 @@ mssql 서버와 연동하는 간단한 로그인 앱
 3. JWT를 이용한 간단한 로그인페이지 구현
 4. iis에 reverse porxy server 설정 - node.js 실행모듈과 연결
 5. 확인 후 종료
+
+## API
+- 로그인페이지 ```GET /```
+- 회원가입페이지 ```GET /signUpPage```
+- 회원가입 ```POST /signUp```
+- 로그인 ```POST /signIn```
+- 로그아웃 ```GET /singOut```
+
