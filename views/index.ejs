@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+<head>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/stylesheets/w3.css">
+</head>
+
+<body>
+  <form id="signIn" action="/signIn" method='POST'>
+    <h2>Sign in</h2>
+    <br>
+    <input class="w3-input" type="text" placeholder="ID">
+    <br>
+    <input class="w3-input" type="text" placeholder="password">
+    <br>
+    <button class="w3-btn">Sign in</button>
+  </form>
+  <br>
+  <a href="/signUpPage" class="w3-btn">Sign up</a>
+</body>
+
 </html>
