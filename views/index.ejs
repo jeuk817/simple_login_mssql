@@ -7,17 +7,16 @@
 </head>
 
 <body>
-  <form id="signIn" action="/signIn" method='POST'>
-    <h2>Sign in</h2>
-    <br>
-    <input class="w3-input" type="text" name="id" placeholder="ID">
-    <br>
-    <input class="w3-input" type="text" name="pwd" placeholder="password">
-    <br>
-    <button class="w3-btn">Sign in</button>
-  </form>
+  <h2>Sign in</h2>
+  <br>
+  <input class="w3-input" id="inputID" type="text" name="id" placeholder="ID">
+  <br>
+  <input class="w3-input" id="inputPwd" type="text" name="pwd" placeholder="password">
+  <br>
+  <button class="w3-btn" id="signInBtn">Sign in</button>
   <br>
   <a href="/signUpPage" class="w3-btn">Sign up</a>
 </body>
+<script src="/javascripts/sign_in.js"></script>
 
 </html>

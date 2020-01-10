@@ -32,4 +32,26 @@ router.post('/signUp', async (req, res, next) => {
   }
 })
 
+// 로그인
+router.post('/signIn', async (req, res, next) => {
+  const { id, pwd } = req.body;
+  try {
+    const pool = await connPoolPromise;
+    const result = await pool.request()
+      .input('inputID', id)
+      .query('select * from Users where ID = @inputID');
+
+    if (!result.recordset.length) return res.send('없음');
+    if (result.recordset[0].PASSWD !== pwd) return res.send('틀림');
+
+    return res.redirect('/userPage');
+  } catch {
+    return next(err);
+  }
+});
+
+router.get('/userPage', (req, res, next) => {
+  res.render('userPage');
+})
+
 module.exports = router;
