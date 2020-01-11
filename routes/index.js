@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const jwt = require('jsonwebtoken');
 
 const { connPoolPromise } = require('../db/connect_mssql');
 
@@ -43,6 +44,18 @@ router.post('/signIn', async (req, res, next) => {
 
     if (!result.recordset.length) return res.send('없음');
     if (result.recordset[0].PASSWD !== pwd) return res.send('틀림');
+
+    const token = jwt.sign({
+      id: result.recordset[0].ID,
+      pwd: result.recordset[0].PASSWD
+    }, process.env.JWT_SECRET, {
+      expiresIn: '30m',
+      issuer: 'jack'
+    });
+    res.cookie('jwt_token', token, {
+      httpOnly: true,
+      maxAge: 30 * 60000,
+    });
 
     return res.redirect('/userPage');
   } catch {
