@@ -6,12 +6,14 @@ const { connPoolPromise } = require('../db/connect_mssql');
 const { isLoggedIn } = require('./middleware');
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Simple Login' });
+router.get('/', isLoggedIn, (req, res, next) => {
+  if (req.user) return res.render('userPage', { user: req.user });
+  return res.render('index', { title: 'Simple Login' });
 });
 
-router.get('/signUpPage', (req, res, next) => {
-  res.render('signUpPage');
+router.get('/signUpPage', isLoggedIn, (req, res, next) => {
+  if (req.user) return res.redirect('/');
+  return res.render('signUpPage');
 });
 
 // 회원가입
@@ -58,15 +60,15 @@ router.post('/signIn', async (req, res, next) => {
       maxAge: 30 * 60000,
     });
 
-    return res.redirect('/userPage');
+    return res.redirect('/');
   } catch {
     return next(err);
   }
 });
 
-router.get('/userPage', isLoggedIn, (req, res, next) => {
-
-  res.render('userPage', { user: req.user });
+router.get('/signOut', (req, res, next) => {
+  res.clearCookie('jwt_token', { path: '/' });
+  res.redirect('/');
 })
 
 module.exports = router;
