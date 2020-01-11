@@ -3,6 +3,7 @@ var router = express.Router();
 const jwt = require('jsonwebtoken');
 
 const { connPoolPromise } = require('../db/connect_mssql');
+const { isLoggedIn } = require('./middleware');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -63,8 +64,9 @@ router.post('/signIn', async (req, res, next) => {
   }
 });
 
-router.get('/userPage', (req, res, next) => {
-  res.render('userPage');
+router.get('/userPage', isLoggedIn, (req, res, next) => {
+
+  res.render('userPage', { user: req.user });
 })
 
 module.exports = router;
