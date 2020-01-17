@@ -8,6 +8,10 @@ mssql 서버와 연동하는 간단한 로그인 앱
 4. iis에 reverse porxy server 설정 - node.js 실행모듈과 연결
 5. 확인 후 종료
 
+### +추가할 것
+6. kakao 주소 api
+7. 핸드폰 본인인증 기능
+
 ## API
 - 로그인페이지 ```GET /```
 - 회원가입페이지 ```GET /signUpPage```
